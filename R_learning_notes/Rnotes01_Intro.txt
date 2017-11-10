@@ -1,0 +1,167 @@
+Learning "Introduction to R" in DataCamp
+
+#----------------- Intro ------------------------------------------------------
+R data types:
+
+    Decimals values like 4.5 are called numerics.
+    Natural numbers like 4 are called integers. Integers are also numerics.
+    Boolean values (TRUE or FALSE) are called logical.
+    Text (or string) values are called characters.
+
+Note how the quotation marks on the right indicate that "some text" is a character.
+
+check data type with class()
+
+R is case sensitive
+quote: #
+
+#----------------- Vectors ---------------------------------------------------
+vectors are created using c()
+
+You can give a name to the elements of a vector with the names() function. 
+some_vector <- c("John Doe", "poker player")
+names(some_vector) <- c("Name", "Profession")
+sum() sum of the vector
+
+total_poker > total_roulette
+output: TRUE
+
+position in a vector: []
+poker_wednesday <- poker_vector[3]
+
+poker_vector[c(1, 5)]: first and fifth elements
+
+roulette_selection_vector <- poker_vector[2:5]
+
+using names: poker_start <- poker_vector[c("Monday", "Tuesday", "Wednesday")]
+
+mean()
+
+The (logical) comparison operators known to R are:
+
+    < for less than
+    > for greater than
+    <= for less than or equal to
+    >= for greater than or equal to
+    == for equal to each other
+    != not equal to each other
+
+selection_vector <- poker_vector > 0
+TRUE FALSE TRUE FALSE TRUE
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+poker_winning_days <- poker_vector[selection_vector]
+only returns elements that correspond to TRUE in selection_vector
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+#------------------------ Matrices ---------------------------------------------------
+matrix(array, byrow, nrow)
+matrix(1:9, byrow = TRUE, nrow = 3)
+
+rownames(my_matrix) <- row_names_vector
+colnames(my_matrix) <- col_names_vector
+
+rowSums(my_matrix): totals for each row of a matrix
+
+cbind(matrix1, matrix2, vector1 ...): add a column or multiple columns to a matrix
+
+rbind(star_wars_matrix, star_wars_matrix2)
+
+colSums(all_wars_matrix)
+
+my_matrix[1,2] selects the element at the first row and second column.
+my_matrix[1:3,2:4] results in a matrix with the data on the rows 1, 2, 3 and columns 2, 3, 4.
+my_matrix[,1] selects all elements of the first column.
+my_matrix[1,] selects all elements of the first row.
+
+* and / for matrices: element-by-element
+%*% :  matrix multiplication
+
+-------------Factors------------------------------------------------------------
+factor: data type that stores categorical variables
+
+categorical value 'Gender': values are 'Male' and 'Female'
+
+factor(): encode the vector as factor
+factor_gender_vector <- factor(gender_vector)
+
+nominal categorical variable: elephant, giraffe, donkey, horse
+ordinal : low medium high or fast slow : there is an order
+
+assign levels to factor vector (if you want to change the automatic assigned factors)
+levels(factor_vector) <- c("name1", "name2", ...)
+
+survey_vector <- c("M", "F", "F", "M", "M")
+factor_survey_vector <- factor(survey_vector)
+levels(factor_survey_vector) <- c("Female", "Male")
+factor_survey_vector
+summary(survey_vector)
+summary(factor_survey_vector)
+
+for ordinal factors,
+factor(speed_vector, ordered = TRUE, levels = c("slow", "fast", "insane"))
+
+select each element [1], [5], ...
+
+
+---------------Data Frames---------------------------------------------------------
+data frame
+matrices can have only same type of data
+can store different types of data in data frames
+
+head(): first observations
+tail(): last observations
+
+str(): shows structure of the data select
+
+creating data frame
+planets_df <- data.frame(name, type, diameter, rotation, rings)
+
+select element using []
+
+planets_df[1:5, "diameter"]
+
+planets_df[,3] or planets_df[,"diameter"] or 
+
+#!!!!!!! shortcut: planets_df$diameter  !!!!!!!!!
+
+planets_df[rings_vector,]
+rings_vector is a TRUE FALSE velctor, so it will show all the data for which rings_vector value is TRUE.
+
+planets_df[rings_vector,"name"]
+this one will only output the "name" data when rings_vector is TRUE
+
+#!!!!!!!!! shortcut: subset(planets_df, subset = rings)  !!!!!!!!!!
+subset(planets_df, diameter<1)
+
+a <- c(100, 10, 1000)
+order(a) : you get 2 1 3
+a[order(a)] : you get 10 100 1000
+
+# Use order() to create positions
+positions <-  order(planets_df$diameter)
+
+# Use positions to sort planets_df
+planets_df[positions,]
+
+
+#------------------ Lists -------------------------------------------------
+
+# Lists: gather a variety of objects under one name
+
+my_list <- list(comp1, comp2 ...)
+
+Named List
+my_list <- list(name1 = comp1, name2 = comp2 ...)
+or
+my_list <- list(comp1, comp2 ...)
+names(my_list) <- c("name1", "name2", ...)
+
+call out components of the list: shining_list[[2]]  or  shining_list$reviews
+
+call out elements of the components: shining_list[[2]][2]
+
+Add component to list:  ext_list <- c(my_list , my_val)
+
+str()
