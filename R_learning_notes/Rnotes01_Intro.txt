@@ -1,4 +1,4 @@
-Learning "Introduction to R" from DataCamp
+Note taken while learning "Introduction to R" from DataCamp
 
 #----------------- Intro ------------------------------------------------------
 R data types:
