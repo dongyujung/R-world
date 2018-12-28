@@ -1,4 +1,4 @@
-# R-world
+# R world
 
 
 ```R
@@ -18,4 +18,13 @@ library(dplyr)
 df %>%
   filter_if(is.numeric, all_vars(. >= 0))
 ```
+
+```R
+# Group by and filter out the row with the highest sum of numeric variables in each group using dplyr
+library(dplyr)
+df %>%
+group_by(a) %>%
+filter_if(is.numeric, all_vars(sum(.)==max(sum(.))
+```
+
 
