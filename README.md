@@ -4,7 +4,7 @@
 ```R
 compareNA <- function(v1,v2) {
   # This function returns TRUE whenever the two inputs are the same, 
-  # including the case when they are both NA's,
+  # including the case when they are both NA's (returns TRUE),
   # and false otherwise.
   same <- (v1 == v2)  |  (is.na(v1) & is.na(v2))
   same[is.na(same)] <- FALSE
