@@ -13,8 +13,9 @@ compareNA <- function(v1,v2) {
 ```
 
 ### filter_if
-* Filter according to a condition for some specific columns which follow a logic.  
+* Filter according to a condition for a subset of columns which follow a logic.  
 * Filter rows where all numeric values are positive using dplyr.  
+* Use any_vars or all_vars depending on the type of condition.
 
 ```R
 # Filter rows where all numeric values are positive using dplyr
@@ -22,7 +23,7 @@ library(dplyr)
 df %>%
   filter_if(is.numeric, all_vars(. >= 0))
 ```
-* Group by and filter according to a condition for a set of columns which follow a logic.  
+* Group by and filter according to a condition for a subset of columns which follow a logic.  
 * Group by and filter out the row with the highest sum of numeric variables in each group using dplyr.  
 
 ```R
@@ -37,6 +38,7 @@ df %>%
 * Join a list of dataframes. Join multiple dataframes. Using purrr::reduce.  
 
 ```R
+# Join multiple dataframes using purrr:reduce
 library(purrr)
 df.list <- list(df1, df2, df3)
 all.data <- reduce(df.list, left_join, by="a")
