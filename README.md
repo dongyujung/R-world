@@ -12,7 +12,7 @@ compareNA <- function(v1,v2) {
 ```
 
 ### filter_if
-```
+```R
 # Filter all numeric columns and filter rows where all values are positive
 df %>%
   filter_if(is.numeric, all_vars(. >= 0))
