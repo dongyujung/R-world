@@ -3,8 +3,9 @@
 
 ```R
 compareNA <- function(v1,v2) {
-  # This function returns TRUE wherever elements are the same, including NA's,
-  # and false everywhere else.
+  # This function returns TRUE whenever the two inputs are the same, 
+  # including the case when they are both NA's,
+  # and false otherwise.
   same <- (v1 == v2)  |  (is.na(v1) & is.na(v2))
   same[is.na(same)] <- FALSE
   return(same)
@@ -12,6 +13,7 @@ compareNA <- function(v1,v2) {
 ```
 
 ### filter_if
+Filter rows where all numeric values are positive using dplyr
 ```R
 # Filter rows where all numeric values are positive using dplyr
 library(dplyr)
